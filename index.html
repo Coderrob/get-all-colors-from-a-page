@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Colors</title>
+  <style>
+    h1 {
+      color: rgb(0, 0, 244);
+    }
+
+    strong {
+      color: #ededed;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Whatup</h1>
+  Oh hai <strong>I AM HERE</strong>
+
+  <script>
+    (() => {
+      const allColors = [];
+      document
+        .querySelectorAll('*')
+        .forEach(element => {
+          const styles = window.getComputedStyle(element, null);
+          Object
+            .keys(styles)
+            .filter(property => !isNaN(+property) && styles[property]?.indexOf('color') > -1)
+            .map(property => styles.getPropertyValue(styles[property]))
+            .forEach(value => {
+              if (value && allColors.indexOf(value) < 0) {
+                allColors.push(value);
+              }
+            });
+        })
+      console.log('allColors', allColors);
+    })();
+  </script>
+</body>
+
+</html>
